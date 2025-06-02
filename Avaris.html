@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avaris - Smart Investing, Made Simple</title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#0a2463", secondary: "#3e92cc" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'DM Sans', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+      font-family: 'Outfit', sans-serif;
+      }
+      .hero-section {
+      background-image: url('https://readdy.ai/api/search-image?query=A%20sophisticated%20financial%20district%20with%20modern%20skyscrapers%20and%20a%20clean%2C%20minimalist%20design.%20The%20image%20should%20have%20a%20gradient%20from%20white%20on%20the%20left%20to%20a%20subtle%20blue%20on%20the%20right.%20The%20left%20side%20should%20be%20completely%20white%20and%20empty%20to%20allow%20for%20text%20overlay%2C%20while%20the%20right%20side%20shows%20elegant%20architecture.%20The%20transition%20between%20white%20and%20blue%20should%20be%20seamless%20and%20natural%2C%20creating%20a%20professional%20atmosphere%20suitable%20for%20a%20financial%20services%20company.&width=1920&height=1080&seq=avaris-hero-bg&orientation=landscape');
+      background-size: cover;
+      background-position: center;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+      }
+      .investment-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+      .testimonial-card {
+      transition: all 0.3s ease;
+      }
+      .testimonial-card:hover {
+      transform: scale(1.02);
+      }
+      .custom-checkbox {
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+      user-select: none;
+      }
+      .custom-checkbox input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+      }
+      .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: #fff;
+      border: 2px solid #e2e8f0;
+      border-radius: 4px;
+      }
+      .custom-checkbox:hover input ~ .checkmark {
+      border-color: #0a2463;
+      }
+      .custom-checkbox input:checked ~ .checkmark {
+      background-color: #0a2463;
+      border-color: #0a2463;
+      }
+      .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+      }
+      .custom-checkbox input:checked ~ .checkmark:after {
+      display: block;
+      }
+      .custom-checkbox .checkmark:after {
+      left: 6px;
+      top: 2px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+      <div class="container mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <link rel="preconnect" href="https://fonts.googleapis.com" />
+            <link
+              rel="preconnect"
+              href="https://fonts.gstatic.com"
+              crossorigin
+            />
+            <link
+              href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
+              rel="stylesheet"
+            />
+            <a
+              href="#"
+              class="text-2xl font-['Montserrat'] font-semibold tracking-wide text-primary"
+              >AVARIS</a
+            >
+            <div class="hidden md:flex ml-10 space-x-8">
+              <a
+                href="#about"
+                class="text-gray-700 hover:text-primary font-medium transition-colors"
+                >About</a
+              >
+              <a
+                href="#investment"
+                class="text-gray-700 hover:text-primary font-medium transition-colors"
+                >Investment Plans</a
+              >
+              <a
+                href="#get-started"
+                class="text-gray-700 hover:text-primary font-medium transition-colors"
+                >Contact Us</a
+              >
+            </div>
+          </div>
+          <div>
+            <a
+              href="#get-started"
+              class="bg-primary text-white px-6 py-2 !rounded-button font-medium hover:bg-opacity-90 transition-colors whitespace-nowrap"
+              >Get Started</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- Hero Section -->
+    <section class="hero-section pt-28 pb-20 min-h-[90vh] flex items-center">
+      <div class="container mx-auto px-6">
+        <div class="w-full md:w-1/2 lg:w-2/5">
+          <h1
+            class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+          >
+            Smart investing, made simple
+          </h1>
+          <p class="mt-6 text-lg text-gray-700 max-w-md">
+            We combine cutting-edge technology with expert financial advice to
+            help you build wealth for the future you want.
+          </p>
+          <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0">
+            <a
+              href="#get-started"
+              class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-opacity-90 transition-colors text-center whitespace-nowrap"
+              >Start Investing</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- How It Works Section -->
+    <section id="about" class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+            How Avaris Works
+          </h2>
+          <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+            Start your investment journey in three simple steps.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 relative">
+          <div class="relative z-10">
+            <div class="bg-white p-8 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-6 font-bold text-xl"
+              >
+                1
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">
+                Create Your Profile
+              </h3>
+              <p class="text-gray-600">
+                Answer a few questions about your financial goals, risk
+                tolerance, and investment timeline.
+              </p>
+            </div>
+          </div>
+          <div class="relative z-10">
+            <div class="bg-white p-8 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-6 font-bold text-xl"
+              >
+                2
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">
+                Receive Your Plan
+              </h3>
+              <p class="text-gray-600">
+                Our algorithms create a personalized investment strategy
+                tailored to your specific needs and objectives.
+              </p>
+            </div>
+          </div>
+          <div class="relative z-10">
+            <div class="bg-white p-8 rounded-lg shadow-sm">
+              <div
+                class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center mb-6 font-bold text-xl"
+              >
+                3
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-4">
+                Watch Your Money Grow
+              </h3>
+              <p class="text-gray-600">
+                Fund your account and let our experts and technology work
+                together to optimize your investments.
+              </p>
+            </div>
+          </div>
+          <!-- Connecting line -->
+          <div
+            class="hidden md:block absolute top-1/2 left-1/4 right-1/4 h-0.5 bg-gray-200 transform -translate-y-1/2"
+          ></div>
+        </div>
+        <div class="mt-12 text-center">
+          <a
+            href="#get-started"
+            class="bg-primary text-white px-8 py-3 !rounded-button font-medium hover:bg-opacity-90 transition-colors inline-block whitespace-nowrap"
+            >Get Started Now</a
+          >
+        </div>
+      </div>
+    </section>
+    <!-- Investment Solutions Section -->
+    <section id="investment" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+            Investment Solutions
+          </h2>
+          <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+            Choose the investment approach that aligns with your financial goals
+            and values.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden investment-card transition-all duration-300"
+          >
+            <div class="h-48 bg-blue-50 flex items-center justify-center">
+              <img
+                src="https://readdy.ai/api/search-image?query=A%20professional%2C%20clean%20visualization%20of%20a%20growth%20investment%20portfolio.%20Show%20a%20minimalist%2C%20elegant%20chart%20with%20upward%20trending%20lines%20in%20blue%20tones%20against%20a%20white%20background.%20Include%20subtle%20financial%20elements%20like%20small%20stock%20symbols%20or%20market%20indicators.%20The%20image%20should%20convey%20steady%20growth%20and%20professional%20financial%20management%20without%20being%20cluttered.%20Perfect%20for%20a%20financial%20services%20company%20website.&width=600&height=400&seq=avaris-growth-portfolio&orientation=landscape"
+                alt="Growth Portfolio"
+                class="object-cover w-full h-full object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Growth Portfolio
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Designed for long-term wealth building with a focus on capital
+                appreciation.
+              </p>
+              <ul class="space-y-2 mb-6">
+                <li class="flex items-start">
+                  <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                  <span class="text-gray-700">Higher growth potential</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                  <span class="text-gray-700"
+                    >Moderate to high risk tolerance</span
+                  >
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                  <span class="text-gray-700">5+ year investment horizon</span>
+                </li>
+              </ul>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-900 font-semibold"
+                  >Min. Investment: $5,000</span
+                >
+                <a href="#" class="text-primary font-medium hover:underline"
+                  >Learn More</a
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden investment-card transition-all duration-300"
+          >
+            <div class="h-48 bg-blue-50 flex items-center justify-center">
+              <img
+                src="https://readdy.ai/api/search-image?query=A%20professional%2C%20clean%20visualization%20of%20a%20balanced%20investment%20portfolio.%20Show%20a%20minimalist%2C%20elegant%20pie%20chart%20or%20balanced%20scale%20in%20blue%20and%20green%20tones%20against%20a%20white%20background.%20The%20image%20should%20convey%20stability%2C%20balance%2C%20and%20diversification%20without%20being%20cluttered.%20Include%20subtle%20financial%20elements%20that%20suggest%20a%20mix%20of%20growth%20and%20income%20investments.%20Perfect%20for%20a%20financial%20services%20company%20website.&width=600&height=400&seq=avaris-balanced-portfolio&orientation=landscape"
+                alt="Balanced Portfolio"
+                class="object-cover w-full h-full object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Balanced Portfolio
+              </h3>
+              <p class="text-gray-600 mb-4">
+                A balanced approach combining growth opportunities with
+                income-generating assets.
+              </p>
+              <ul class="space-y-2 mb-6">
+                <li class="flex items-start">
+                  <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                  <span class="text-gray-700">Moderate growth potential</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                  <span class="text-gray-700">Balanced risk profile</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                  <span class="text-gray-700">3-5 year investment horizon</span>
+                </li>
+              </ul>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-900 font-semibold"
+                  >Min. Investment: $2,500</span
+                >
+                <a href="#" class="text-primary font-medium hover:underline"
+                  >Learn More</a
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-white rounded-lg shadow-sm overflow-hidden investment-card transition-all duration-300"
+          >
+            <div class="h-48 bg-blue-50 flex items-center justify-center">
+              <img
+                src="https://readdy.ai/api/search-image?query=A%20professional%2C%20clean%20visualization%20of%20an%20income-focused%20investment%20portfolio.%20Show%20a%20minimalist%2C%20elegant%20chart%20with%20steady%20dividend%20or%20income%20streams%20in%20blue%20and%20light%20green%20tones%20against%20a%20white%20background.%20Include%20subtle%20financial%20elements%20like%20small%20yield%20indicators%20or%20income%20symbols.%20The%20image%20should%20convey%20stability%2C%20reliability%2C%20and%20consistent%20returns%20without%20being%20cluttered.%20Perfect%20for%20a%20financial%20services%20company%20website.&width=600&height=400&seq=avaris-income-portfolio&orientation=landscape"
+                alt="Income Portfolio"
+                class="object-cover w-full h-full object-top"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                Income Portfolio
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Focused on generating regular income while preserving capital.
+              </p>
+              <ul class="space-y-2 mb-6">
+                <li class="flex items-start">
+                  <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                  <span class="text-gray-700">Steady income generation</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                  <span class="text-gray-700">Lower risk profile</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="ri-check-line text-primary mr-2 mt-1"></i>
+                  <span class="text-gray-700">1-3 year investment horizon</span>
+                </li>
+              </ul>
+              <div class="flex justify-between items-center">
+                <span class="text-gray-900 font-semibold"
+                  >Min. Investment: $1,000</span
+                >
+                <a href="#" class="text-primary font-medium hover:underline"
+                  >Learn More</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Trust Indicators Section -->
+    <section class="py-20">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900">
+            Trusted by Investors
+          </h2>
+          <p class="mt-4 text-gray-600 max-w-2xl mx-auto">
+            Join thousands of investors who trust Avaris with their financial
+            future.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div class="testimonial-card bg-white p-8 rounded-lg shadow-sm">
+            <div class="flex items-center mb-4">
+              <div class="text-amber-400 flex">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-6">
+              "Avaris has completely transformed how I think about investing.
+              Their platform is intuitive, and the personalized advice has
+              helped me achieve my financial goals faster than I expected."
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 bg-gray-200 rounded-full mr-4 overflow-hidden"
+              >
+                <img
+                  src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20middle-aged%20woman%20with%20short%20brown%20hair%2C%20wearing%20business%20attire%2C%20smiling%20confidently%20against%20a%20neutral%20background.%20The%20image%20should%20be%20high%20quality%2C%20well-lit%2C%20and%20suitable%20for%20a%20testimonial%20on%20a%20financial%20services%20website.&width=200&height=200&seq=avaris-testimonial-1&orientation=squarish"
+                  alt="Sarah Mitchell"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Sarah Mitchell</h4>
+                <p class="text-gray-600 text-sm">
+                  Marketing Director, 3 years with Avaris
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card bg-white p-8 rounded-lg shadow-sm">
+            <div class="flex items-center mb-4">
+              <div class="text-amber-400 flex">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-6">
+              "As someone who was intimidated by investing, Avaris made the
+              process approachable and straightforward. Their team took the time
+              to understand my needs and created a plan that works for me."
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 bg-gray-200 rounded-full mr-4 overflow-hidden"
+              >
+                <img
+                  src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20a%20young%20Asian%20man%20in%20his%20early%2030s%20wearing%20business%20casual%20attire%2C%20smiling%20confidently%20against%20a%20neutral%20background.%20The%20image%20should%20be%20high%20quality%2C%20well-lit%2C%20and%20suitable%20for%20a%20testimonial%20on%20a%20financial%20services%20website.&width=200&height=200&seq=avaris-testimonial-2&orientation=squarish"
+                  alt="David Chen"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">David Chen</h4>
+                <p class="text-gray-600 text-sm">
+                  Software Engineer, 2 years with Avaris
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="testimonial-card bg-white p-8 rounded-lg shadow-sm">
+            <div class="flex items-center mb-4">
+              <div class="text-amber-400 flex">
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-fill"></i>
+                <i class="ri-star-half-fill"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-6">
+              "The combination of technology and human expertise at Avaris is
+              unmatched. I've seen consistent returns on my investments, and
+              their transparent fee structure means I know exactly what I'm
+              paying for."
+            </p>
+            <div class="flex items-center">
+              <div
+                class="w-12 h-12 bg-gray-200 rounded-full mr-4 overflow-hidden"
+              >
+                <img
+                  src="https://readdy.ai/api/search-image?query=Professional%20headshot%20of%20an%20African%20American%20woman%20in%20her%20mid-40s%20with%20natural%20hair%2C%20wearing%20professional%20business%20attire%2C%20smiling%20warmly%20against%20a%20neutral%20background.%20The%20image%20should%20be%20high%20quality%2C%20well-lit%2C%20and%20suitable%20for%20a%20testimonial%20on%20a%20financial%20services%20website.&width=200&height=200&seq=avaris-testimonial-3&orientation=squarish"
+                  alt="Michelle Johnson"
+                  class="w-full h-full object-cover object-top"
+                />
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900">Michelle Johnson</h4>
+                <p class="text-gray-600 text-sm">
+                  Business Owner, 4 years with Avaris
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-lg shadow-sm p-8">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="text-center">
+              <h3 class="text-4xl font-bold text-primary mb-2">$4.2B+</h3>
+              <p class="text-gray-600">Assets Under Management</p>
+            </div>
+            <div class="text-center">
+              <h3 class="text-4xl font-bold text-primary mb-2">28,000+</h3>
+              <p class="text-gray-600">Active Investors</p>
+            </div>
+            <div class="text-center">
+              <h3 class="text-4xl font-bold text-primary mb-2">12.4%</h3>
+              <p class="text-gray-600">Average Annual Return</p>
+            </div>
+          </div>
+        </div>
+        <div class="mt-16">
+          <h3 class="text-xl font-semibold text-gray-900 text-center mb-8">
+            Regulated & Trusted
+          </h3>
+          <div class="flex flex-wrap justify-center items-center gap-8">
+            <div
+              class="w-32 h-16 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+            >
+              <div class="flex items-center">
+                <i class="ri-bank-fill ri-2x mr-2 text-gray-500"></i>
+                <span class="font-semibold text-gray-500">FinReg</span>
+              </div>
+            </div>
+            <div
+              class="w-32 h-16 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+            >
+              <div class="flex items-center">
+                <i class="ri-shield-check-fill ri-2x mr-2 text-gray-500"></i>
+                <span class="font-semibold text-gray-500">SecureInvest</span>
+              </div>
+            </div>
+            <div
+              class="w-32 h-16 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+            >
+              <div class="flex items-center">
+                <i class="ri-safe-fill ri-2x mr-2 text-gray-500"></i>
+                <span class="font-semibold text-gray-500">FDIC</span>
+              </div>
+            </div>
+            <div
+              class="w-32 h-16 flex items-center justify-center grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all"
+            >
+              <div class="flex items-center">
+                <i class="ri-building-fill ri-2x mr-2 text-gray-500"></i>
+                <span class="font-semibold text-gray-500">InvestSafe</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Call-to-Action Section -->
+    <section id="get-started" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div
+          class="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden"
+        >
+          <div class="md:flex">
+            <div class="w-full p-8 md:p-12">
+              <h2 class="text-3xl font-bold text-gray-900 mb-6">
+                Start Your Investment Journey Today
+              </h2>
+              <p class="text-gray-600 mb-8">
+                Fill out the form to schedule a free consultation with one of
+                our financial advisors. No commitment required.
+              </p>
+              <form>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      for="name"
+                      class="block text-gray-700 font-medium mb-2"
+                      >Full Name</label
+                    >
+                    <input
+                      type="text"
+                      id="name"
+                      class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      placeholder="John Smith"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="email"
+                      class="block text-gray-700 font-medium mb-2"
+                      >Email Address</label
+                    >
+                    <input
+                      type="email"
+                      id="email"
+                      class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="phone"
+                      class="block text-gray-700 font-medium mb-2"
+                      >Phone Number</label
+                    >
+                    <input
+                      type="tel"
+                      id="phone"
+                      class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      placeholder="(123) 456-7890"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="investment"
+                      class="block text-gray-700 font-medium mb-2"
+                      >Investment Amount</label
+                    >
+                    <div class="relative">
+                      <div
+                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+                      >
+                        <span class="text-gray-500">$</span>
+                      </div>
+                      <input
+                        type="number"
+                        id="investment"
+                        class="w-full pl-8 pr-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                        placeholder="5,000"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-6">
+                  <label
+                    for="question"
+                    class="block text-gray-700 font-medium mb-2"
+                    >Initial Questions or Comments</label
+                  >
+                  <textarea
+                    id="question"
+                    rows="4"
+                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="Share any specific questions or topics you'd like to discuss during the consultation"
+                  ></textarea>
+                </div>
+                <div class="mt-6">
+                  <label class="custom-checkbox">
+                    <input type="checkbox" />
+                    <span class="checkmark"></span>
+                    <span class="ml-2"
+                      >I agree to the
+                      <a href="#" class="text-primary hover:underline"
+                        >Terms of Service</a
+                      >
+                      and
+                      <a href="#" class="text-primary hover:underline"
+                        >Privacy Policy</a
+                      ></span
+                    >
+                  </label>
+                </div>
+                <button
+                  type="submit"
+                  class="mt-8 w-full bg-primary text-white py-3 !rounded-button font-medium hover:bg-opacity-90 transition-colors whitespace-nowrap"
+                >
+                  Schedule Consultation
+                </button>
+              </form>
+              <div
+                class="mt-8 flex items-center justify-center space-x-6 text-gray-600"
+              >
+                <div class="flex items-center">
+                  <i class="ri-shield-check-line text-primary ri-lg mr-2"></i>
+                  <span class="text-sm">Secure & Confidential</span>
+                </div>
+                <div class="flex items-center">
+                  <i
+                    class="ri-customer-service-line text-primary ri-lg mr-2"
+                  ></i>
+                  <span class="text-sm">24/7 Support</span>
+                </div>
+                <div class="flex items-center">
+                  <i class="ri-timer-line text-primary ri-lg mr-2"></i>
+                  <span class="text-sm">Quick Response</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          <div>
+            <a
+              href="#"
+              class="text-2xl font-['Pacifico'] text-white mb-6 inline-block"
+              >Avaris</a
+            >
+            <p class="text-gray-400 mb-6">
+              Smart investing solutions designed to help you achieve your
+              financial goals.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-linkedin-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-twitter-x-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-facebook-fill"></i>
+              </a>
+              <a
+                href="#"
+                class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <i class="ri-instagram-fill"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-6">Services</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Investment Management</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Retirement Planning</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Tax Optimization</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Estate Planning</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Financial Advising</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-6">Resources</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Investment Guide</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Market Insights</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Retirement Calculator</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >Blog</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >FAQs</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <i class="ri-map-pin-line mt-1 mr-3 text-gray-400"></i>
+                <span class="text-gray-400"
+                  >123 Financial District, New York, NY 10004</span
+                >
+              </li>
+              <li class="flex items-center">
+                <i class="ri-phone-line mr-3 text-gray-400"></i>
+                <a
+                  href="tel:+18005551234"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >(800) 555-1234</a
+                >
+              </li>
+              <li class="flex items-center">
+                <i class="ri-mail-line mr-3 text-gray-400"></i>
+                <a
+                  href="mailto:info@avaris.com"
+                  class="text-gray-400 hover:text-white transition-colors"
+                  >info@avaris.com</a
+                >
+              </li>
+            </ul>
+            <div class="mt-6">
+              <h5 class="font-medium mb-3">Subscribe to our newsletter</h5>
+              <div class="flex">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  class="bg-gray-800 border-none text-white px-4 py-2 rounded-l focus:outline-none focus:ring-2 focus:ring-primary"
+                />
+                <button
+                  class="bg-primary text-white px-4 py-2 rounded-r hover:bg-opacity-90 transition-colors whitespace-nowrap"
+                >
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            &copy; 2025 Avaris Financial Services. All rights reserved.
+          </p>
+          <div class="flex flex-wrap justify-center gap-4">
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Terms of Service</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Privacy Policy</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Cookie Policy</a
+            >
+            <a
+              href="#"
+              class="text-gray-400 hover:text-white text-sm transition-colors"
+              >Accessibility</a
+            >
+          </div>
+          <div class="mt-4 md:mt-0 flex space-x-4">
+            <i class="ri-visa-fill ri-lg text-gray-400"></i>
+            <i class="ri-mastercard-fill ri-lg text-gray-400"></i>
+            <i class="ri-paypal-fill ri-lg text-gray-400"></i>
+            <i class="ri-apple-fill ri-lg text-gray-400"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script id="navigation-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            if (targetId === "#") return;
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: "smooth",
+              });
+            }
+          });
+        });
+      });
+    </script>
+    <script id="form-validation-script">
+      document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector("form");
+        if (form) {
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            // Simple validation
+            const name = document.getElementById("name");
+            const email = document.getElementById("email");
+            const phone = document.getElementById("phone");
+            const investment = document.getElementById("investment");
+            const checkbox = document.querySelector('input[type="checkbox"]');
+            let isValid = true;
+            if (!name.value.trim()) {
+              isValid = false;
+              name.classList.add("border-red-500");
+            } else {
+              name.classList.remove("border-red-500");
+            }
+            if (!email.value.trim() || !email.value.includes("@")) {
+              isValid = false;
+              email.classList.add("border-red-500");
+            } else {
+              email.classList.remove("border-red-500");
+            }
+            if (!phone.value.trim()) {
+              isValid = false;
+              phone.classList.add("border-red-500");
+            } else {
+              phone.classList.remove("border-red-500");
+            }
+            if (
+              !investment.value.trim() ||
+              isNaN(investment.value) ||
+              Number(investment.value) <= 0
+            ) {
+              isValid = false;
+              investment.classList.add("border-red-500");
+            } else {
+              investment.classList.remove("border-red-500");
+            }
+            if (!checkbox.checked) {
+              isValid = false;
+              checkbox.parentElement.classList.add("text-red-500");
+            } else {
+              checkbox.parentElement.classList.remove("text-red-500");
+            }
+            if (isValid) {
+              // Form submission would go here
+              alert(
+                "Thank you for your interest! A financial advisor will contact you shortly.",
+              );
+              form.reset();
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
